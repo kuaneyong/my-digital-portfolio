@@ -1,4 +1,4 @@
-import type { Config } from "drizzle-kit"
+﻿import type { Config } from "drizzle-kit"
 import "dotenv/config"
 
 console.log("Loading database configuration...")
@@ -10,19 +10,18 @@ console.log("Loading database configuration...")
  */
 function parseDatabaseUrl(url: string) {
   try {
-    // Format: postgres://user:password@host:port/database
-    const regex = /postgres:\/\/([^:]+):([^@]+)@([^:]+):?(\d*)\/([^?]+)(\?.*)?/;
-    const match = url.match(regex);
-    
-    if (!match) {
-      throw new Error("Invalid PostgreSQL connection string format");
+    const u = new URL(url);
+
+    if (!["postgres:", "postgresql:"].includes(u.protocol)) {
+      throw new Error("Unsupported protocol: " + u.protocol);
     }
-    
-    const [, user, password, host, , database, queryString] = match;
-    
-    // Check if SSL is required from query string
-    const sslRequired = queryString?.includes("sslmode=require");
-    
+
+    const user = decodeURIComponent(u.username || "");
+    const password = decodeURIComponent(u.password || "");
+    const host = u.hostname || "";
+    const database = (u.pathname || "").replace(/^\//, "");
+    const sslRequired = u.searchParams.get("sslmode") === "require";
+
     return {
       host,
       user,
