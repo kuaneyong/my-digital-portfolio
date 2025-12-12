@@ -184,7 +184,7 @@ export default async function Home() {
               <div className="space-y-2">
                 <div className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary">Experience</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  15+ Years of Cybersecurity Expertise
+                  Proven Cybersecurity Expertise
                 </h2>
                 <p className="max-w-[600px] text-muted-foreground md:text-xl/relaxed">
                   With extensive experience in the cybersecurity industry, I&apos;ve helped organizations of all sizes
