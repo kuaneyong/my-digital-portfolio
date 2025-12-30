@@ -9,6 +9,8 @@
     "lint": "eslint app components lib hooks --ignore-pattern node_modules/"
   },
   "dependencies": {
+    "@arcjet/inspect": "^1.0.0-beta.15",
+    "@arcjet/node": "^1.0.0-beta.15",
     "@aws-sdk/client-rds-data": "latest",
     "@clerk/nextjs": "^6.16.0",
     "@cloudflare/workers-types": "latest",
