@@ -26,13 +26,7 @@ function jsonResponse(body: object, status = 200) {
 }
 
 async function handleDecision(req: Request) {
-  // Parse URL for test flags
   const url = new URL((req as any).url || '', 'http://localhost');
-
-  // Temporary: force responses for local testing
-  const force = url.searchParams.get('force');
-  if (force === 'rate') return jsonResponse({ error: 'Too many requests (forced)' }, 429);
-  if (force === 'bot') return jsonResponse({ error: 'No bots allowed (forced)' }, 403);
 
   const decision = await aj.protect(req as any, { requested: 5 });
   console.log('Arcjet decision', decision);
